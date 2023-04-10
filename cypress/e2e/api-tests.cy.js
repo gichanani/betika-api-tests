@@ -1,6 +1,7 @@
 describe('API tests for https://fakerestapi.azurewebsites.net/api/v1/Users', () => {
-    
+  
   it('should return a 200 status code', () => {
+    cy.allure().severity('critical')
     cy.request('GET', '/Users')
     .then((response) => {
       expect(response.status).to.eq(200)
@@ -8,6 +9,7 @@ describe('API tests for https://fakerestapi.azurewebsites.net/api/v1/Users', () 
     });
 
     it('should check if User 6 exists in the response', () => {
+      cy.allure().severity('blocker')
       cy.request('GET', 'https://fakerestapi.azurewebsites.net/api/v1/Users')
         .then((response) => {
           const user = response.body.find(u => u.userName === 'User 6');
@@ -18,6 +20,7 @@ describe('API tests for https://fakerestapi.azurewebsites.net/api/v1/Users', () 
     })
 
     it('should return the correct number of objects', () => {
+      cy.allure().severity('critical')
       cy.request('GET', '/Users')
         .then((response) => {
           cy.log(response.body.length)
