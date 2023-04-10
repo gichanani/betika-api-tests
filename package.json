@@ -1,0 +1,36 @@
+{
+  "name": "betika_api_tests",
+  "version": "1.0.0",
+  "description": "betika API tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "cy:run": "npx cypress run --browser chrome --env allure=true",
+    "clean:reports": "rm -R -f allure-report/* && rm -R -f allure-results/*",
+    "before:test": "npm run clean:reports",
+    "tests": "npm run cy:run || npm run after:test",
+    "after:test": "npm run allure:report",
+    "allure:report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "allure:generate": "allure generate allure-results"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gichanani/betika-api-tests.git"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Nicholas Gichana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gichanani/betika-api-tests/issues"
+  },
+  "homepage": "https://github.com/gichanani/betika-api-tests#readme",
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.38.3",
+    "cypress": "^12.9.0"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.21.0"
+  }
+}
